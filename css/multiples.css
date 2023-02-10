@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#btnNavBar a {
+  text-decoration: none;
+  color: white;
+}
+#menuArea {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  height: 40vh;
+  margin: 5%;
+  padding: 1%;
+}
+#inputNameArea {
+  padding: 5%;
+}
+
+#valueArea input {
+  max-width: 100px;
+}
+
+#cautionMessage {
+  color: gray;
+  font-size: 12px;
+}
+#inputRequisitions {
+  width: 180px;
+}
+#btnAdd {
+  margin: 2%;
+}
+#btnDone {
+  width: 100px;
+  margin: 5%;
+  display: none;
+}
+
+/*result Area CSS*/
+#results {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  height: 70vh;
+  margin: 5%;
+  padding: 1%;
+}
+#resultTitle {
+  font-size: 30px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  border-bottom: 1px solid;
+  height: 50px;
+  width: 400px;
+}
+#resultSubtitle {
+  font-size: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  height: 50px;
+  width: 400px;
+  margin-top: -20%;
+}
+#infoResult {
+  font-size: 18px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  height: 50px;
+  width: 400px;
+  margin-top: -30%;
+}

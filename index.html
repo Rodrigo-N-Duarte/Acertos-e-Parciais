@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./img/favicon-32x32.png">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/main.js" defer></script>
+    <!--BOOTSTRAP CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!--BOOTSTRAP ICONS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>Acertos e Parciais</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4" id="btnNavBar">
+                <h5 class="text-white h4">Escolha o modo para ser utilizado</h5>
+                <button type="button" class="btn btn-outline-light"><a href="./index.html">Cálculo simples</a></button>
+                <button type="button" class="btn btn-outline-light"><a href="./multiples.html">Múltiplos valores</a></button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <div class="row" id="menuArea">
+                        <div id="inputNameArea">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i
+                                        class="bi bi-person-fill"></i></span>
+                                <input type="text" class="form-control" placeholder="Realizador da imagem"
+                                    aria-label="Username" aria-describedby="basic-addon1" id="inputPersonX" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control" placeholder="Sócio 2" aria-label="Username"
+                                    aria-describedby="basic-addon1" id="inputPerson2" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control" placeholder="Sócio 3" aria-label="Username"
+                                    aria-describedby="basic-addon2" id="inputPerson3" required>
+                            </div>
+                            <div id="valueArea">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon3"><i
+                                            class="bi bi-currency-dollar"></i></span>
+                                    <input type="number" class="form-control" placeholder="Preço"
+                                        aria-label="Username" aria-describedby="basic-addon3" id="inputUnitPrice"
+                                        required>
+
+                                    <span class="input-group-text" id="basic-addon4"><i class="bi bi-123"></i></span>
+                                    <input type="number" class="form-control" placeholder="Quantidade"
+                                        aria-label="Username" aria-describedby="basic-addon4" id="inputAmount" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="submitArea">
+                            <span id="cautionMessage">* Atente-se aos valores descritos acima, antes de enviar os dados</span>
+                            <button type="submit" class="btn btn-success" id="btnSubmit">Realizar cálculo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-7" id="areaResult">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--BOOTSTRAP JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
