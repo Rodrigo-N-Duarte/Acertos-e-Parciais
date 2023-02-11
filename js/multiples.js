@@ -1,20 +1,28 @@
+let total = {
+    partner1: 0,
+    partner2: 0,
+    partner3: 0
+}
+localStorage.setItem('total', JSON.stringify(total))
 const btnAdd = document.querySelector('#btnAdd')
 btnAdd.addEventListener('click', addList)
+let count = localStorage.setItem('count', 0)
+
+
 
 function addList() {
-    let requisition = document.querySelector('#inputRequisitions').value
     let people = {
         person1: document.querySelector(`#inputPerson1`).value,
         person2: document.querySelector(`#inputPerson2`).value,
         person3: document.querySelector(`#inputPerson3`).value
     }
-    if (people.person1 == "" || people.person2 == "" || people.person3 == "" || requisition == 0)
+    if (people.person1 == "" || people.person2 == "" || people.person3 == "")
         alert('Complete todos os campos antes de continuar!')
     else {
-        let count = 1
-        for (let i = 1; i <= requisition; i++) {
-            document.querySelector('#valueArea').innerHTML +=
-                `<div class="input-group mb-3">
+        let total = JSON.parse(localStorage.getItem('total'))
+        let count = localStorage.getItem('count')
+        document.querySelector('#valueArea').innerHTML =
+            `<div class="input-group mb-3">
                 <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
                 <input type="number" class="form-control" placeholder="Preço" aria-label="Username"
                     id="inputUnitPrice${count}" required>
@@ -22,47 +30,99 @@ function addList() {
                 <input type="number" class="form-control" placeholder="Quant." aria-label="Username"
                     id="inputAmount${count}" required>
                 <div class="form-floating">
-                    <select class="form-select"
-                        aria-label="Floating label select example" id="select${count}">
-                        <option value="1">${people.person1}</option>
-                        <option value="2">${people.person2}</option>
-                        <option value="3">${people.person3}</option>
-                    </select>
-                    <label>Realizador da imagem</label>
+                <form>
+                <fieldset>
+                  <div>
+                    <input type="radio" id="contactChoice1" name="contact" value="partner1" />
+                    <label for="contactChoice1">${people.person1}</label>
+                    <input type="radio" id="contactChoice2" name="contact" value="partner2" />
+                    <label for="contactChoice2">${people.person2}</label>
+                    <input type="radio" id="contactChoice3" name="contact" value="partner3" />
+                    <label for="contactChoice3">${people.person3}</label>
+                  </div>
+                  <div>
+                    <button type="submit">Submit</button>
+                  </div>
+                </fieldset>
+              </form>
+              <pre id="log"></pre>
                 </div>
             </div>`
-            count++
-        }
-        btnDone.style.display = 'block'
-        localStorage.clear()
-        localStorage.setItem('db', requisition)
+
+        const form = document.querySelector("form");
+        const log = document.querySelector("#log");
+        let select
+
+        form.addEventListener(
+            "submit",
+            (event) => {
+                const data = new FormData(form);
+                let output = "";
+                for (const entry of data) {
+                    select = `${entry[1]}`;
+                }
+                event.preventDefault();
+                let sale = {
+                    unitPrice: document.querySelector(`#inputUnitPrice${count}`).value,
+                    amount: document.querySelector(`#inputAmount${count}`).value,
+                    selected: select
+                }
+                total = createSale(sale, total)
+                count++
+                console.log(total)
+                localStorage.setItem('total', JSON.stringify(total))
+            },
+            false
+        );
     }
 }
+
 
 const btnDone = document.querySelector('#btnDone')
 btnDone.addEventListener('click', () => {
-    showResult(makeCalculation(createSale()))
+
 })
 
-function createSale() {
-    let requisition = localStorage.getItem('db')
+function createSale(sale, total) {
+    let precoTotal, toReceive, jaExsite
 
-    if (requisition < 1)
-        return alert('Se atente aos dados inseridos, ocorreu um erro.')
-    else {
-        let sales = [requisition]
-        for (let i = 0; i < requisition; i++) {
-            var select = document.getElementById(`select${i}`);
-            var selectTextName = select.options[select.selectedIndex].text;
-            sales[i] = {
-                unitPrice: document.querySelector(`#inputUnitPrice${i + 1}`),
-                amount: document.querySelector(`#inputAmount${i + 1}`),
-                selected: selectTextName
-            }
-        }
-        return sales
+    if (sale.selected == 'partner1') {
+        precoTotal = sale.unitPrice * sale.amount
+        total.partner1 += precoTotal * 0.4
+        total.partner2 += precoTotal * 0.3
+        total.partner3 += precoTotal * 0.3
     }
+    else if (sale.selected == 'partner2') {
+        precoTotal = sale.unitPrice * sale.amount
+        total.partner2 += precoTotal * 0.4
+        total.partner1 += precoTotal * 0.3
+        total.partner3 += precoTotal * 0.3
+    }
+    else {
+        precoTotal = sale.unitPrice * sale.amount
+        total.partner3 += precoTotal * 0.4
+        total.partner1 += precoTotal * 0.3
+        total.partner2 += precoTotal * 0.3
+    }
+
+    return total
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function makeCalculation(sales) {
     let toReceive = [3]
