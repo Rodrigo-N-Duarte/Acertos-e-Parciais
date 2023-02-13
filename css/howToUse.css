@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#btnNavBar a {
+  text-decoration: none;
+  color: white;
+}
+#menuArea {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  height: 40vh;
+  margin: 5%;
+  padding: 1%;
+}
+#aboutArea {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 3%;
+}
+#commentsArea {
+  padding: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.43);
+  border-radius: 5px;
+}

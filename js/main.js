@@ -3,9 +3,9 @@ btnSubmit.addEventListener('click', showResult)
 
 function showResult() {
     let employees = {
-        personX: createPerson('PersonX'),
-        person2: createPerson('Person2'),
-        person3: createPerson('Person3'),
+        partner1: createPerson('Partner1'),
+        partner2: createPerson('Partner2'),
+        partner3: createPerson('Partner3'),
         unitPrice: document.querySelector('#inputUnitPrice').value,
         amount: document.querySelector('#inputAmount').value
     }
@@ -16,18 +16,16 @@ function showResult() {
     else {
         try {
             let finalPrice = employees.unitPrice * employees.amount
-
             let divResult = `<div class="row" id="results">
         <p id="resultTitle">Área de resultados</p>
         <p id="resultSubtitle">Valores a receber:</p>
         <div id="infoResult">
-            <p id="infoPersonX">${employees.personX.name}: R$${(finalPrice * 0.4).toFixed(2)}</p>
-            <p id="infoPerson2">${employees.person2.name}: R$${(finalPrice * 0.3).toFixed(2)}</p>
-            <p id="infoPerson3">${employees.person3.name}: R$${(finalPrice * 0.3).toFixed(2)}</p>
+            <p id="infoPartner1">${employees.partner1.name}: R$${(finalPrice * 0.4).toFixed(2)}</p>
+            <p id="infoPartner2">${employees.partner2.name}: R$${(finalPrice * 0.3).toFixed(2)}</p>
+            <p id="infoPartner3">${employees.partner3.name}: R$${(finalPrice * 0.3).toFixed(2)}</p>
             <p id="totalValue" style="margin-top: 20%;">Valor total: R$${finalPrice}</p>
         </div>
     </div>`
-
             let resultArea = document.querySelector('#areaResult')
             resultArea.innerHTML = divResult
         }

@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="./img/favicon-32x32.png">
-    <link rel="stylesheet" href="./css/multiples.css">
-    <script src="./js/multiples.js" defer></script>
+    <link rel="stylesheet" href="./css/howToUse.css">
     <!--FLASH MESSAGE-->
     <link rel="stylesheet" href="./flashjs-master/dist/flash.min.css">
     <script src="./flashjs-master/dist/flash.min.js"></script>
@@ -16,7 +15,7 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!--BOOTSTRAP ICONS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Acertos e Parciais</title>
+    <title>Acertos e Parciais - Sobre</title>
 </head>
 
 <body>
@@ -37,41 +36,35 @@
                 <button type="button" class="btn btn-outline-light"><a href="./multiples.html">Múltiplos
                         valores</a></button>
                 <button type="button" class="btn btn-outline-light" id="btnHowToUse" style="margin-left: 70%;"><a
-                        href="./howToUse.html"><i class="bi bi-info-circle"></i> Como
-                        usar</a></button>
+                        href="./howToUse.html"><i class="bi bi-info-circle"></i></a></button>
             </div>
         </div>
     </header>
     <main>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 col-lg-4" class="listArea">
-                    <div class="row" class="menuArea">
-                        <div id="inputNameArea">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
-                                <input type="text" class="form-control" placeholder="Sócio 1" aria-label="Username"
-                                    aria-describedby="basic-addon1" id="inputPerson1" required>
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
-                                <input type="text" class="form-control" placeholder="Sócio 2" aria-label="Username"
-                                    aria-describedby="basic-addon1" id="inputPerson2" required>
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon2"><i class="bi bi-person"></i></span>
-                                <input type="text" class="form-control" placeholder="Sócio 3" aria-label="Username"
-                                    aria-describedby="basic-addon2" id="inputPerson3" required>
-                            </div>
-                        </div>
-                        <div id="addArea">
-                            <button type="submit" class="btn btn-success" id="btnAdd">+ Adicionar a soma</button>
-                        </div>
-                        <div id="valueArea">
-                        </div>
+                <div class="col-10" id="aboutArea">
+                    <h1 style="text-align: center;">Como utilizar os recursos da plataforma?</h1>
+                    <h2>Cálculo Simples:</h2>
+                    <p>Para calcular atividades de valor único, utilize a aba de 'Cálculo Simples', assim o resultado
+                        final levará em conta apenas o valor e quantidade iniciais propostas.</p>
+                    <h2>Para valores variados:</h2>
+                    <p>Caso deseje somar diversas atividades, com valores, quantidades e indivíduo em que executou o
+                        exercício
+                        forem diferentes uns dos outros, clique na aba de 'Múltiplos Valores'. Nela, inicie a consulta
+                        propondo os nomes de cada sócio da organização, depois clique em adicionar os valores, insira os
+                        dados e clique em enviar. A partir desse momento, poderá adicionar mais seções para o crédito de
+                        um novo valor, com quantidaes e preços diferentes sendo atribuidas aos 3 usuários informados no
+                        começo da página.<br><br></p>
+                    <div id="commentsArea">
+                        <h5>Observações:</h5>
+                        <p>- O site funciona como um facilitador para cálculos, uma matemática, portanto os dados
+                            inseridos e
+                            os resultados não ficam salvos e serão reiniciados caso o navegador em uso for fechado.</p>
+                        <p>- O valor total dado nas operações múltiplas é o total arrecadado por todos os sócios que
+                            participaram. Além disso, o valor individual mostrado para cada um é referente ao valor
+                            final que cada usuário deverá ter em sua conta bancária no final do processo.</p>
                     </div>
-                </div>
-                <div class="col-12 col-lg-7" id="areaResult">
                 </div>
             </div>
         </div>

@@ -1,74 +1,60 @@
-*
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-#btnNavBar a
-{
-text-decoration: none;
-color: white;
+#btnNavBar a {
+  text-decoration: none;
+  color: white;
 }
-#menuArea
-{
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    height: 60vh;
-    margin: 5%;
-    padding: 1%;
+#menuArea {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  height: 60vh;
+  margin: 5%;
+  padding: 1%;
 }
-#inputNameArea
-{
-    padding: 5%;
+#inputNameArea {
+  padding: 5%;
 }
-#valueArea
-{
-    margin-left: 2%;
-    margin-top: 5%;
+#valueArea {
+  margin-left: 2%;
+  margin-top: 5%;
 }
-#valueArea input
-{
-    margin-right: 5%;
+#valueArea input {
+  margin-right: 5%;
 }
 
-#cautionMessage
-{
-    color: gray;
-    font-size: 12px;
+#cautionMessage {
+  color: gray;
+  font-size: 12px;
 }
-#btnSubmit
-{
-    margin: 2%;
+#btnSubmit {
+  margin: 2%;
 }
 
 /*result Area CSS*/
-#results
-{
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    height: 70vh;
-    margin: 5%;
-    padding: 1%;
+#results {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  height: 70vh;
+  margin: 5%;
+  padding: 1%;
 }
-#resultTitle
-{
-    font-size: 30px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border-bottom: 1px solid;
-    height: 50px;
-    width: 400px;
+#resultTitle {
+  font-size: 30px;
+  border-bottom: 1px solid;
+  height: 50px;
+  width: 400px;
 }
-#resultSubtitle
-{
-    font-size: 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    height: 50px;
-    width: 400px;
-    margin-top: -20%;
+#resultSubtitle {
+  font-size: 20px;
+  height: 50px;
+  width: 400px;
+  margin-top: -20%;
 }
-#infoResult
-{
-    font-size: 18px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    height: 50px;
-    width: 400px;
-    margin-top: -30%;
+#infoResult {
+  font-size: 18px;
+  height: 50px;
+  width: 400px;
+  margin-top: -30%;
 }

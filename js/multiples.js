@@ -1,8 +1,12 @@
 window.onload = () => {
+    //objeto master com o que cada um acumula no total e o valor de sobra que está na conta e que deve ser pago
     let total = {
         partner1: 0,
         partner2: 0,
         partner3: 0,
+        raisedPartner1: 0,
+        raisedPartner2: 0,
+        raisedPartner3: 0,
         all: 0,
     }
     localStorage.setItem('total', JSON.stringify(total))
@@ -13,17 +17,17 @@ const btnAdd = document.querySelector('#btnAdd')
 btnAdd.addEventListener('click', addList)
 
 function addList() {
-    let people = {
-        person1: document.querySelector(`#inputPerson1`).value,
-        person2: document.querySelector(`#inputPerson2`).value,
-        person3: document.querySelector(`#inputPerson3`).value
+    let employees = {
+        partner1: document.querySelector(`#inputpartner1`).value,
+        partner2: document.querySelector(`#inputpartner2`).value,
+        partner3: document.querySelector(`#inputpartner3`).value
     }
-    if (people.person1 == "" || people.person2 == "" || people.person3 == "") {
+    if (employees.partner1 == "" || employees.partner2 == "" || employees.partner3 == "") {
         alert('Complete todos os campos antes de continuar!')
         window.FlashMessage.error('Erro');
     }
     else {
-        let select
+        let parterSelected
         let total = JSON.parse(localStorage.getItem('total'))
         let count = localStorage.getItem('count')
         let valueArea = document.querySelector('#valueArea')
@@ -42,92 +46,115 @@ function addList() {
                                         id="inputAmount${count}" required>
                                 </div>
                                 <div class="form-floating">
-                                    <form>
+                                    <form id="formNewSale">
                                         <fieldset>
                                             <div>
                                             <span>Selecione quem realizou a imagem<br></span>
                                                 <input type="radio" id="contactChoice1" name="contact"
                                                     value="partner1" />
-                                                <label for="contactChoice1">${people.person1}</label>
+                                                <label for="contactChoice1">${employees.partner1}</label>
                                                 <input type="radio" id="contactChoice2" name="contact"
                                                     value="partner2" />
-                                                <label for="contactChoice2">${people.person2}</label>
+                                                <label for="contactChoice2">${employees.partner2}</label>
                                                 <input type="radio" id="contactChoice3" name="contact"
                                                     value="partner3" />
-                                                <label for="contactChoice3">${people.person3}</label>
+                                                <label for="contactChoice3">${employees.partner3}</label>
                                             </div>
                                             <div>
-                                            <span id="cautionMessage">* Atente-se aos valores antes de enviar os dados</span>
+                                            <p class="cautionMessage">* Atente-se aos valores antes de enviar os dados</p>
+                                            <p class="cautionMessage">* Se nenhum sócio for indicado, o primeiro informado será usado para efetuar o cáclulo</p>
                                                 <button type="submit" class="btn btn-warning"
                                                     id="btnSubmit">Enviar</button>
                                             </div>
                                         </fieldset>
                                     </form>
-                                    <pre id="log"></pre>
                                 </div>
                             </div>`
 
-        const form = document.querySelector("form");
-        const log = document.querySelector("#log");
+        const form = document.querySelector("#formNewSale");
 
-        form.addEventListener(
-            "submit",
-            (event) => {
-                const data = new FormData(form);
-                let output = "";
-                for (const entry of data) {
-                    select = `${entry[1]}`;
-                }
-                event.preventDefault();
-                let sale = {
-                    unitPrice: document.querySelector(`#inputUnitPrice${count}`).value,
-                    amount: document.querySelector(`#inputAmount${count}`).value,
-                    selected: select
-                }
-                total = createSale(sale, total)
-                count++
-                console.log(total)
-                localStorage.setItem('total', JSON.stringify(total))
-                window.FlashMessage.success('Adicionado com sucesso!');
-                showResult(total, people)
-            },
+        form.addEventListener("submit", (event) => {
+            const data = new FormData(form);
+            let output = "";
+            for (const entry of data) {
+                parterSelected = `${entry[1]}`;
+            }
+            event.preventDefault();
+            let sale = {
+                unitPrice: document.querySelector(`#inputUnitPrice${count}`).value,
+                amount: document.querySelector(`#inputAmount${count}`).value,
+                selected: parterSelected
+            }
+            total = createSale(sale, total)
+            count++
+            console.log(total)
+            localStorage.setItem('total', JSON.stringify(total))
+            window.FlashMessage.success('Adicionado com sucesso!');
+            valueArea.style.display = 'none'
+            showResult(total, employees)
+        },
             false
         );
     }
 }
 
 function createSale(sale, total) {
-    let precoTotal = sale.unitPrice * sale.amount, toReceive, jaExsite
+    let precoTotal = sale.unitPrice * sale.amount
     if (sale.selected == 'partner1') {
         total.partner1 += precoTotal * 0.4
         total.partner2 += precoTotal * 0.3
         total.partner3 += precoTotal * 0.3
+        total.raisedPartner1 += precoTotal
     }
     else if (sale.selected == 'partner2') {
         total.partner2 += precoTotal * 0.4
         total.partner1 += precoTotal * 0.3
         total.partner3 += precoTotal * 0.3
+        total.raisedPartner2 += precoTotal
     }
     else {
         total.partner3 += precoTotal * 0.4
         total.partner1 += precoTotal * 0.3
         total.partner2 += precoTotal * 0.3
+        total.raisedPartner3 += precoTotal
     }
     total.all += precoTotal
     return total
 }
 
+function showResult(total, employees) {
+    let toPay1 = 0, toPay2 = 0, toPay3 = 0
+    let plusIcon = ' <i class="bi bi-plus-circle"></i>', minusIcon = ' <i class="bi bi-dash-circle"></i>'
 
-function showResult(total, people) {
+    if (total.partner1 > total.raisedPartner1)
+        toPay1 = (total.partner1 - total.raisedPartner1).toFixed(2) + plusIcon
+    else
+        toPay1 = (total.raisedPartner1 - total.partner1).toFixed(2) + minusIcon
+    if (total.partner2 > total.raisedPartner2)
+        toPay2 = (total.partner2 - total.raisedPartner2).toFixed(2) + plusIcon
+    else
+        toPay2 = (total.raisedPartner2 - total.partner2).toFixed(2) + minusIcon
+    if (total.partner3 > total.raisedPartner3)
+        toPay3 = (total.partner3 - total.raisedPartner3).toFixed(2) + plusIcon
+    else
+        toPay3 = (total.raisedPartner3 - total.partner3).toFixed(2) + minusIcon
+
+    //atualiza div de resultados a cada nova soma adicionada
     document.querySelector('#areaResult').innerHTML =
         `<div class="row" id="results">
         <p id="resultTitle">Área de resultados</p>
-        <p id="resultSubtitle">Valores a receber:</p>
+        <p id="resultSubtitle">Valores em que a conta de cada sócio deverá ter ao final:</p>
         <div id="infoResult">
-        <p id="infoPersonX">${people.person1}: R$${(total.partner1).toFixed(2)}</p>
-        <p id="infoPerson2">${people.person2}: R$${(total.partner2).toFixed(2)}</p>
-        <p id="infoPerson3">${people.person3}: R$${(total.partner3).toFixed(2)}</p>
-        <p id="totalValue" style="margin-top: 20%;">Valor total: R$${(total.all).toFixed(2)}</p>
+        <p>${employees.partner1}: R$${(total.partner1).toFixed(2)}</p>
+        <p>${employees.partner2}: R$${(total.partner2).toFixed(2)}</p>
+        <p>${employees.partner3}: R$${(total.partner3).toFixed(2)}</p>
+        <div id="totalValue">
+        <p>Valor total: R$${(total.all).toFixed(2)}</p>
+        </div>
+        <p>Valor nas contas individuais, '<i class="bi bi-plus-circle"></i>' deve receber e '<i class="bi bi-dash-circle"></i>' deve pagar:</p>
+        <p><b>${employees.partner1}</b>: R$${(toPay1)}</p>
+        <p><b>${employees.partner2}</b>: R$${(toPay2)}</p>
+        <p><b>${employees.partner3}</b>: R$${(toPay3)}</p>
     </div>
     </div>`
 }
