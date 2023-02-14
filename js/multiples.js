@@ -18,16 +18,16 @@ btnAdd.addEventListener('click', addList)
 
 function addList() {
     let employees = {
-        partner1: document.querySelector(`#inputpartner1`).value,
-        partner2: document.querySelector(`#inputpartner2`).value,
-        partner3: document.querySelector(`#inputpartner3`).value
+        partner1: document.querySelector(`#inputPartner1`).value,
+        partner2: document.querySelector(`#inputPartner2`).value,
+        partner3: document.querySelector(`#inputPartner3`).value
     }
     if (employees.partner1 == "" || employees.partner2 == "" || employees.partner3 == "") {
         alert('Complete todos os campos antes de continuar!')
         window.FlashMessage.error('Erro');
     }
     else {
-        let parterSelected
+        let partnerSelected
         let total = JSON.parse(localStorage.getItem('total'))
         let count = localStorage.getItem('count')
         let valueArea = document.querySelector('#valueArea')
@@ -77,14 +77,15 @@ function addList() {
             const data = new FormData(form);
             let output = "";
             for (const entry of data) {
-                parterSelected = `${entry[1]}`;
+                partnerSelected = `${entry[1]}`;
             }
             event.preventDefault();
             let sale = {
                 unitPrice: document.querySelector(`#inputUnitPrice${count}`).value,
                 amount: document.querySelector(`#inputAmount${count}`).value,
-                selected: parterSelected
+                selected: partnerSelected
             }
+            // cria nova venda, salva no localStorage e mostra na tela
             total = createSale(sale, total)
             count++
             console.log(total)
@@ -123,21 +124,22 @@ function createSale(sale, total) {
 }
 
 function showResult(total, employees) {
-    let toPay1 = 0, toPay2 = 0, toPay3 = 0
+    let valueOnWallet1 = 0, valueOnWallet2 = 0, valueOnWallet3 = 0
     let plusIcon = ' <i class="bi bi-plus-circle"></i>', minusIcon = ' <i class="bi bi-dash-circle"></i>'
 
+    // condição para descobrir quem precisa pagar e quem precisa receber
     if (total.partner1 > total.raisedPartner1)
-        toPay1 = (total.partner1 - total.raisedPartner1).toFixed(2) + plusIcon
+        valueOnWallet1 = (total.partner1 - total.raisedPartner1).toFixed(2) + plusIcon
     else
-        toPay1 = (total.raisedPartner1 - total.partner1).toFixed(2) + minusIcon
+        valueOnWallet1 = (total.raisedPartner1 - total.partner1).toFixed(2) + minusIcon
     if (total.partner2 > total.raisedPartner2)
-        toPay2 = (total.partner2 - total.raisedPartner2).toFixed(2) + plusIcon
+        valueOnWallet2 = (total.partner2 - total.raisedPartner2).toFixed(2) + plusIcon
     else
-        toPay2 = (total.raisedPartner2 - total.partner2).toFixed(2) + minusIcon
+        valueOnWallet2 = (total.raisedPartner2 - total.partner2).toFixed(2) + minusIcon
     if (total.partner3 > total.raisedPartner3)
-        toPay3 = (total.partner3 - total.raisedPartner3).toFixed(2) + plusIcon
+        valueOnWallet3 = (total.partner3 - total.raisedPartner3).toFixed(2) + plusIcon
     else
-        toPay3 = (total.raisedPartner3 - total.partner3).toFixed(2) + minusIcon
+        valueOnWallet3 = (total.raisedPartner3 - total.partner3).toFixed(2) + minusIcon
 
     //atualiza div de resultados a cada nova soma adicionada
     document.querySelector('#areaResult').innerHTML =
@@ -152,9 +154,9 @@ function showResult(total, employees) {
         <p>Valor total: R$${(total.all).toFixed(2)}</p>
         </div>
         <p>Valor nas contas individuais, '<i class="bi bi-plus-circle"></i>' deve receber e '<i class="bi bi-dash-circle"></i>' deve pagar:</p>
-        <p><b>${employees.partner1}</b>: R$${(toPay1)}</p>
-        <p><b>${employees.partner2}</b>: R$${(toPay2)}</p>
-        <p><b>${employees.partner3}</b>: R$${(toPay3)}</p>
+        <p><b>${employees.partner1}</b>: R$${(valueOnWallet1)}</p>
+        <p><b>${employees.partner2}</b>: R$${(valueOnWallet2)}</p>
+        <p><b>${employees.partner3}</b>: R$${(valueOnWallet3)}</p>
     </div>
     </div>`
 }
